@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AlphaPulse | Stock Market ML Valuation & Volatility Regime Terminal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="quant-terminal-theme">
+  <!-- Master Application Layout: Sidebar + Main Content Deck -->
+  <div class="terminal-shell">
+    
+    <!-- LEFT SIDEBAR NAVIGATION DOCK -->
+    <aside class="sidebar-dock">
+      <!-- Brand Header -->
+      <div class="dock-brand">
+        <div class="brand-logo-glow">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+            <polyline points="16 7 22 7 22 13"></polyline>
+          </svg>
+        </div>
+        <div class="brand-title-wrap">
+          <div class="brand-name-row">
+            <span class="brand-name">AlphaPulse</span>
+            <span class="brand-tag">QUANT</span>
+          </div>
+          <span class="brand-sub">ML CA1 &amp; CA2 Terminal</span>
+        </div>
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav class="dock-nav">
+        <div class="nav-section-label">CORE WORKSPACE</div>
+        <button class="dock-link active" data-view="view-valuation">
+          <span class="nav-icon">⚡</span>
+          <span class="nav-text">Valuation Desk</span>
+          <span class="nav-pill pill-live">LIVE</span>
+        </button>
+        <button class="dock-link" data-view="view-governance">
+          <span class="nav-icon">🛡️</span>
+          <span class="nav-text">Model Governance</span>
+        </button>
+        <button class="dock-link" data-view="view-regimes">
+          <span class="nav-icon">🌌</span>
+          <span class="nav-text">Regime &amp; Risk Radar</span>
+        </button>
+
+        <div class="nav-section-label">QUANTITATIVE LAB</div>
+        <button class="dock-link" data-view="view-portfolio">
+          <span class="nav-icon">🧪</span>
+          <span class="nav-text">Portfolio Stress Lab</span>
+        </button>
+        <button class="dock-link" data-view="view-explorer">
+          <span class="nav-icon">🗄️</span>
+          <span class="nav-text">Historical Explorer</span>
+          <span class="nav-pill pill-count">2,000</span>
+        </button>
+        <button class="dock-link" data-view="view-directives">
+          <span class="nav-icon">📜</span>
+          <span class="nav-text">Quant Directives &amp; Math</span>
+        </button>
+      </nav>
+
+      <!-- Sidebar Footer Status -->
+      <div class="dock-footer">
+        <div class="system-status-box">
+          <div class="status-indicator-row">
+            <span class="pulse-dot"></span>
+            <span class="status-text">4 ML Algorithms Active</span>
+          </div>
+          <div class="engine-specs">
+            <span>Primary: GBM Huber Tree</span>
+            <span>Mode: 100% Offline / Local</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- RIGHT MAIN WORKSPACE -->
+    <div class="main-workspace">
+      
+      <!-- TOP COMMAND RIBBON / METRIC TICKER TAPE -->
+      <header class="command-ribbon">
+        <div class="ribbon-ticker">
+          <div class="ticker-item">
+            <span class="ticker-label">TARGET HORIZON:</span>
+            <span class="ticker-val">1-Day Forward Price</span>
+          </div>
+          <div class="ticker-separator"></div>
+          <div class="ticker-item">
+            <span class="ticker-label">PRIMARY MODEL:</span>
+            <span class="ticker-val text-cyan">Gradient Boosting (GBM)</span>
+          </div>
+          <div class="ticker-separator"></div>
+          <div class="ticker-item">
+            <span class="ticker-label">R² SCORE:</span>
+            <span class="ticker-val text-emerald">97.80%</span>
+          </div>
+          <div class="ticker-separator"></div>
+          <div class="ticker-item">
+            <span class="ticker-label">MAE BENCHMARK:</span>
+            <span class="ticker-val">₹42.06 (3.4% MAPE)</span>
+          </div>
+        </div>
+
+        <div class="ribbon-actions">
+          <div class="status-chip chip-offline">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <span>Self-Contained Client Inference</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- VIEW 1: REAL-TIME VALUATION DESK (PREDICTOR) -->
+      <section id="view-valuation" class="view-panel active">
+        
+        <!-- Strategy Presets Bar (Trading Chips) -->
+        <div class="presets-shelf">
+          <span class="shelf-label">STRATEGY PRESETS:</span>
+          <div class="strategy-chips">
+            <button class="chip-preset active" data-preset="blue-chip">
+              <span class="chip-icon">🏛️</span>
+              <span class="chip-title">Blue-Chip Mega Cap</span>
+              <span class="chip-sub">Steady Trend</span>
+            </button>
+            <button class="chip-preset" data-preset="tech-momentum">
+              <span class="chip-icon">🚀</span>
+              <span class="chip-title">Tech Growth Breakout</span>
+              <span class="chip-sub">High-Beta Spike</span>
+            </button>
+            <button class="chip-preset" data-preset="value-rebound">
+              <span class="chip-icon">🎯</span>
+              <span class="chip-title">Oversold Deep Value</span>
+              <span class="chip-sub">Mean-Reversion</span>
+            </button>
+            <button class="chip-preset" data-preset="market-shock">
+              <span class="chip-icon">⚡</span>
+              <span class="chip-title">Macro Volatility Shock</span>
+              <span class="chip-sub">Tail Risk Stress</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dynamic Tail-Risk Advisory Bar -->
+        <div id="risk-alert-banner" class="risk-advisory-card">
+          <div class="advisory-icon-box">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+              <line x1="12" y1="9" x2="12" y2="13"></line>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+          </div>
+          <div class="advisory-body">
+            <div class="advisory-title-row">
+              <span class="advisory-badge">NON-LINEAR INTERACTION TRIGGERED</span>
+              <h5>Institutional Asymmetric Volatility Warning</h5>
+            </div>
+            <p id="alert-banner-text">
+              High realized volatility (&gt;32%) combined with overbought RSI momentum breaches institutional risk limits. The Gradient Boosting regressor has activated non-linear penalty trees; review alongside its 90% double-quantile risk spread.
+            </p>
+          </div>
+        </div>
+
+        <!-- Valuation Workspace Grid: Modular Feature Deck + Analytical Glassboard -->
+        <div class="desk-grid">
+          
+          <!-- LEFT: MODULAR FEATURE ENGINEERING DECK -->
+          <div class="feature-deck-column">
+            
+            <!-- Section 1: Valuation & Price -->
+            <div class="feature-module">
+              <div class="module-header">
+                <span class="module-number">01</span>
+                <h6>BASE ASSET VALUATION (SPOT ENTRY)</h6>
+              </div>
+              <div class="price-input-module">
+                <div class="input-label-row">
+                  <span class="input-label">Current Stock Price (Spot Mark)</span>
+                  <span class="input-value-pill" id="val-price">₹1,850.00</span>
+                </div>
+                
+                <!-- Institutional Currency Input Box with Steppers -->
+                <div class="quant-price-input-box">
+                  <span class="currency-prefix">₹</span>
+                  <input type="number" id="input-price" class="direct-price-field" min="1" max="100000" step="10" value="1850" placeholder="Enter market price...">
+                  <div class="stepper-buttons">
+                    <button type="button" class="btn-step" id="btn-price-up" title="Increment Price (+₹10)">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <polyline points="18 15 12 9 6 15"></polyline>
+                      </svg>
+                    </button>
+                    <button type="button" class="btn-step" id="btn-price-down" title="Decrement Price (-₹10)">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Quick Nudge Delta Adjustment Chips -->
+                <div class="price-nudge-row">
+                  <button type="button" class="btn-nudge" data-nudge="-100">-₹100</button>
+                  <button type="button" class="btn-nudge" data-nudge="-25">-₹25</button>
+                  <button type="button" class="btn-nudge" data-nudge="+25">+₹25</button>
+                  <button type="button" class="btn-nudge" data-nudge="+100">+₹100</button>
+                  <button type="button" class="btn-nudge" data-nudge="+500">+₹500</button>
+                </div>
+
+                <!-- Market Cap Benchmark Tiers -->
+                <div class="market-cap-tiers">
+                  <span class="tier-lead">Quick Tiers:</span>
+                  <button type="button" class="btn-tier" data-tier-price="350">Small (₹350)</button>
+                  <button type="button" class="btn-tier" data-tier-price="950">Mid (₹950)</button>
+                  <button type="button" class="btn-tier active" data-tier-price="1850">Large (₹1,850)</button>
+                  <button type="button" class="btn-tier" data-tier-price="3400">Mega (₹3,400)</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: Technical Momentum Matrix -->
+            <div class="feature-module">
+              <div class="module-header">
+                <span class="module-number">02</span>
+                <h6>TECHNICAL MOMENTUM MATRIX</h6>
+              </div>
+              
+              <!-- 14-Day RSI Box -->
+              <div class="custom-input-block">
+                <div class="input-label-row">
+                  <div class="label-with-tag">
+                    <span class="input-label">14-Day RSI (Momentum)</span>
+                    <span class="tag-status tag-neutral" id="tag-rsi">Neutral (30-70)</span>
+                  </div>
+                  <span class="input-value-pill" id="val-rsi">52.4</span>
+                </div>
+                <div class="quant-compact-input-box">
+                  <span class="input-prefix-tag">RSI</span>
+                  <input type="number" id="input-rsi" class="direct-metric-field" min="10" max="95" step="0.5" value="52.4" placeholder="10 - 95">
+                  <div class="stepper-buttons">
+                    <button type="button" class="btn-step" id="btn-rsi-up" title="Increment RSI (+1.0)">▲</button>
+                    <button type="button" class="btn-step" id="btn-rsi-down" title="Decrement RSI (-1.0)">▼</button>
+                  </div>
+                </div>
+                <div class="quick-preset-chips">
+                  <button type="button" class="btn-chip-val" data-target="input-rsi" data-val="22.5">Oversold (22.5)</button>
+                  <button type="button" class="btn-chip-val" data-target="input-rsi" data-val="42.0">Bearish (42)</button>
+                  <button type="button" class="btn-chip-val active" data-target="input-rsi" data-val="52.4">Neutral (52.4)</button>
+                  <button type="button" class="btn-chip-val" data-target="input-rsi" data-val="65.0">Bullish (65)</button>
+                  <button type="button" class="btn-chip-val" data-target="input-rsi" data-val="78.0">Overbought (78)</button>
+                </div>
+              </div>
+
+              <!-- 50/200 SMA Ratio Box -->
+              <div class="custom-input-block">
+                <div class="input-label-row">
+                  <div class="label-with-tag">
+                    <span class="input-label">50-Day / 200-Day SMA Ratio</span>
+                    <span class="tag-status tag-bullish" id="tag-sma">Golden Cross Zone</span>
+                  </div>
+                  <span class="input-value-pill" id="val-sma">1.08x</span>
+                </div>
+                <div class="quant-compact-input-box">
+                  <span class="input-prefix-tag">SMA</span>
+                  <input type="number" id="input-sma" class="direct-metric-field" min="0.60" max="1.60" step="0.01" value="1.08" placeholder="0.60 - 1.60">
+                  <div class="stepper-buttons">
+                    <button type="button" class="btn-step" id="btn-sma-up" title="Increment SMA (+0.02)">▲</button>
+                    <button type="button" class="btn-step" id="btn-sma-down" title="Decrement SMA (-0.02)">▼</button>
+                  </div>
+                </div>
+                <div class="quick-preset-chips">
+                  <button type="button" class="btn-chip-val" data-target="input-sma" data-val="0.82">Death Cross (0.82x)</button>
+                  <button type="button" class="btn-chip-val" data-target="input-sma" data-val="0.95">Bear Drift (0.95x)</button>
+                  <button type="button" class="btn-chip-val" data-target="input-sma" data-val="1.00">Parity (1.00x)</button>
+                  <button type="button" class="btn-chip-val active" data-target="input-sma" data-val="1.08">Golden Cross (1.08x)</button>
+                  <button type="button" class="btn-chip-val" data-target="input-sma" data-val="1.25">Strong Trend (1.25x)</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3: Risk & Volatility Sensitivity -->
+            <div class="feature-module">
+              <div class="module-header">
+                <span class="module-number">03</span>
+                <h6>VOLATILITY &amp; SYSTEMATIC RISK</h6>
+              </div>
+              
+              <!-- 30d Realized Volatility Box -->
+              <div class="custom-input-block">
+                <div class="input-label-row">
+                  <div class="label-with-tag">
+                    <span class="input-label">30-Day Realized Volatility</span>
+                    <span class="tag-status tag-warning" id="tag-vol">Moderate Volatility</span>
+                  </div>
+                  <span class="input-value-pill" id="val-vol">22.5%</span>
+                </div>
+                <div class="quant-compact-input-box">
+                  <span class="input-prefix-tag">VOL</span>
+                  <input type="number" id="input-vol" class="direct-metric-field" min="5" max="85" step="0.5" value="22.5" placeholder="5 - 85%">
+                  <div class="stepper-buttons">
+                    <button type="button" class="btn-step" id="btn-vol-up" title="Increment Volatility (+1.0%)">▲</button>
+                    <button type="button" class="btn-step" id="btn-vol-down" title="Decrement Volatility (-1.0%)">▼</button>
+                  </div>
+                </div>
+                <div class="quick-preset-chips">
+                  <button type="button" class="btn-chip-val" data-target="input-vol" data-val="14.0">Low Vol (14%)</button>
+                  <button type="button" class="btn-chip-val active" data-target="input-vol" data-val="22.5">Moderate (22.5%)</button>
+                  <button type="button" class="btn-chip-val" data-target="input-vol" data-val="35.0">Elevated (35%)</button>
+                  <button type="button" class="btn-chip-val" data-target="input-vol" data-val="52.0">Extreme Shock (52%)</button>
+                </div>
+              </div>
+
+              <!-- Beta & Sector Toggles -->
+              <div class="duo-grid">
+                <div class="input-card-mini">
+                  <span class="input-label-sm">Market Sector</span>
+                  <div class="chip-toggle-group" id="control-sector">
+                    <button type="button" class="btn-toggle active" data-sector="Technology">Tech</button>
+                    <button type="button" class="btn-toggle" data-sector="Financials">Finance</button>
+                    <button type="button" class="btn-toggle" data-sector="Healthcare">Health</button>
+                    <button type="button" class="btn-toggle" data-sector="Energy">Energy</button>
+                  </div>
+                </div>
+
+                <div class="input-card-mini">
+                  <span class="input-label-sm">Market Beta (&beta;)</span>
+                  <div class="chip-toggle-group" id="control-beta">
+                    <button type="button" class="btn-toggle" data-beta="0.75">0.75x</button>
+                    <button type="button" class="btn-toggle active" data-beta="1.15">1.15x</button>
+                    <button type="button" class="btn-toggle" data-beta="1.55">1.55x</button>
+                    <button type="button" class="btn-toggle" data-beta="1.95">1.95x</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 4: Fundamentals & Flow -->
+            <div class="feature-module">
+              <div class="module-header">
+                <span class="module-number">04</span>
+                <h6>FUNDAMENTALS &amp; INSTITUTIONAL FLOW</h6>
+              </div>
+              <div class="duo-grid">
+                <!-- Earnings Growth -->
+                <div class="custom-input-block">
+                  <div class="input-label-row">
+                    <span class="input-label">Earnings Growth QoQ</span>
+                    <span class="input-value-pill" id="val-earnings">+14.5%</span>
+                  </div>
+                  <div class="quant-compact-input-box">
+                    <span class="input-prefix-tag">QoQ</span>
+                    <input type="number" id="input-earnings" class="direct-metric-field" min="-50" max="100" step="1" value="14.5" placeholder="-50 to +100%">
+                    <div class="stepper-buttons">
+                      <button type="button" class="btn-step" id="btn-earnings-up" title="Increment (+2%)">▲</button>
+                      <button type="button" class="btn-step" id="btn-earnings-down" title="Decrement (-2%)">▼</button>
+                    </div>
+                  </div>
+                  <div class="quick-preset-chips">
+                    <button type="button" class="btn-chip-val" data-target="input-earnings" data-val="-15.0">-15%</button>
+                    <button type="button" class="btn-chip-val" data-target="input-earnings" data-val="0.0">0%</button>
+                    <button type="button" class="btn-chip-val active" data-target="input-earnings" data-val="14.5">+14.5%</button>
+                    <button type="button" class="btn-chip-val" data-target="input-earnings" data-val="32.0">+32%</button>
+                  </div>
+                </div>
+
+                <!-- Institutional Flow Level Selector -->
+                <div class="custom-input-block">
+                  <div class="input-label-row">
+                    <span class="input-label">Institutional Flow</span>
+                    <span class="input-value-pill" id="val-flow">Level 4</span>
+                  </div>
+                  <input type="hidden" id="input-flow" value="4">
+                  <div class="flow-selector-group" id="control-flow">
+                    <button type="button" class="btn-flow" data-flow="1" title="Heavy Institutional Outflow">
+                      <span class="flow-dot red-flow"></span>
+                      <span>L1 Out</span>
+                    </button>
+                    <button type="button" class="btn-flow" data-flow="2" title="Mild Institutional Outflow">
+                      <span class="flow-dot amber-flow"></span>
+                      <span>L2 Mild</span>
+                    </button>
+                    <button type="button" class="btn-flow" data-flow="3" title="Neutral Institutional Parity">
+                      <span class="flow-dot slate-flow"></span>
+                      <span>L3 Neut</span>
+                    </button>
+                    <button type="button" class="btn-flow active" data-flow="4" title="Institutional Accumulation">
+                      <span class="flow-dot cyan-flow"></span>
+                      <span>L4 Inflow</span>
+                    </button>
+                    <button type="button" class="btn-flow" data-flow="5" title="Block Buying Surge">
+                      <span class="flow-dot green-flow"></span>
+                      <span>L5 Block</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Execution Button -->
+            <button type="button" id="btn-execute-inference" class="btn-quant-execute">
+              <div class="btn-glow"></div>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+              <span>Recalculate Quantitative Forecast</span>
+            </button>
+          </div>
+
+          <!-- RIGHT: ANALYTICAL GLASSBOARD -->
+          <div class="glassboard-column">
+            
+            <!-- Hero Target Price Terminal Card -->
+            <div class="quant-hero-card">
+              <div class="hero-top-row">
+                <div class="hero-target-meta">
+                  <span class="hero-label">PRODUCTION TARGET VALUATION (GBM REGRESSOR)</span>
+                  <div class="price-display-group">
+                    <h1 class="target-price-big" id="hero-target-price">₹2,042.85</h1>
+                    <div class="return-trend-badge" id="hero-target-return">+10.42% Expected</div>
+                  </div>
+                </div>
+                
+                <!-- Unsupervised Regime Badge -->
+                <div class="regime-hero-pill" id="hero-regime-badge">
+                  <span class="regime-status-dot"></span>
+                  <div class="regime-text-group">
+                    <span class="regime-tier-name" id="hero-regime-tier">Regime 0: Bullish Accumulation</span>
+                    <span class="regime-cluster-id" id="hero-regime-cluster">Unsupervised K-Means Cluster #0</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quantile Confidence Envelope (Pinball Loss) -->
+              <div class="quantile-envelope-box">
+                <div class="envelope-header">
+                  <span class="envelope-title">
+                    90% Double-Quantile Confidence Envelope (&alpha;=0.05 / 0.95)
+                    <span class="info-help" title="Asymmetric empirical bounds learned through pinball loss to identify 95% 1-day Value-at-Risk floor and breakout ceiling.">ⓘ</span>
+                  </span>
+                  <span class="envelope-bounds-display" id="quantile-bounds">[ ₹1,924.50 — ₹2,168.20 ]</span>
+                </div>
+
+                <div class="envelope-track-visual">
+                  <div class="envelope-bar-fill" id="quantile-bar-fill"></div>
+                  <div class="envelope-marker-needle" id="quantile-bar-marker"></div>
+                </div>
+
+                <div class="envelope-stats-row">
+                  <div class="stat-endpoint">
+                    <span class="endpoint-sub">5th Percentile Floor (VaR)</span>
+                    <span class="endpoint-val" id="val-q-lower">₹1,924.50</span>
+                  </div>
+                  <div class="stat-endpoint center-text">
+                    <span class="endpoint-sub">Uncertainty Spread (&Delta;)</span>
+                    <span class="endpoint-val text-cyan" id="val-q-spread">₹243.70</span>
+                  </div>
+                  <div class="stat-endpoint right-text">
+                    <span class="endpoint-sub">95th Percentile Ceiling</span>
+                    <span class="endpoint-val" id="val-q-upper">₹2,168.20</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 4 Quantitative Risk HUD Tiles -->
+              <div class="quant-hud-grid">
+                <div class="hud-tile">
+                  <span class="hud-label">1-DAY 95% VALUE-AT-RISK</span>
+                  <span class="hud-val text-rose" id="val-stat-var">-₹118.35</span>
+                  <span class="hud-sub">Downside tail buffer</span>
+                </div>
+                <div class="hud-tile">
+                  <span class="hud-label">QUANT BASE VALUE</span>
+                  <span class="hud-val" id="val-stat-base">₹1,850.00</span>
+                  <span class="hud-sub">Current traded mark</span>
+                </div>
+                <div class="hud-tile">
+                  <span class="hud-label">VOLATILITY MULTIPLIER</span>
+                  <span class="hud-val text-amber" id="val-stat-volmult">1.12x</span>
+                  <span class="hud-sub">ATR stress expansion</span>
+                </div>
+                <div class="hud-tile">
+                  <span class="hud-label">ALPHA MOMENTUM SPREAD</span>
+                  <span class="hud-val text-emerald" id="val-stat-spread">+₹192.85</span>
+                  <span class="hud-sub">Net expected alpha</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Multi-Model Consensus Matrix (Cross-Algorithm Deck) -->
+            <div class="consensus-deck-card">
+              <div class="consensus-header">
+                <div class="consensus-title-group">
+                  <span class="deck-icon">⚖️</span>
+                  <div>
+                    <h4>Multi-Algorithm Consensus Evaluation</h4>
+                    <p class="deck-subtitle">Ensemble cross-validation against 3 distinct supervised learning architectures</p>
+                  </div>
+                </div>
+                <span class="consensus-badge">3 Independent Learners</span>
+              </div>
+
+              <div class="algo-trio-grid">
+                <!-- 1. Gradient Boosting -->
+                <div class="algo-score-card algo-card-gbm">
+                  <div class="card-tier-tag">PRIMARY ENGINE</div>
+                  <h5>Gradient Boosting (GBM)</h5>
+                  <div class="algo-price-out" id="pred-gbm-val">₹2,042.85</div>
+                  <div class="algo-meta-details">
+                    <span>Loss: Huber + MSE</span>
+                    <span>Trees: 100 Estimators</span>
+                    <span>Focus: Non-Linear Patterns</span>
+                  </div>
+                </div>
+
+                <!-- 2. Random Forest -->
+                <div class="algo-score-card algo-card-rf">
+                  <div class="card-tier-tag tag-ensemble">BAGGING ENSEMBLE</div>
+                  <h5>Random Forest Regressor</h5>
+                  <div class="algo-price-out" id="pred-rf-val">₹2,028.40</div>
+                  <div class="algo-meta-details">
+                    <span>Method: Decorrelated Bagging</span>
+                    <span>Trees: 100 Estimators</span>
+                    <span>Focus: Variance Reduction</span>
+                  </div>
+                </div>
+
+                <!-- 3. Support Vector Regression -->
+                <div class="algo-score-card algo-card-svr">
+                  <div class="card-tier-tag tag-kernel">KERNEL HYPERPLANE</div>
+                  <h5>Support Vector Regr. (SVR)</h5>
+                  <div class="algo-price-out" id="pred-svr-val">₹1,998.60</div>
+                  <div class="algo-meta-details">
+                    <span>Kernel: Radial Basis Function</span>
+                    <span>Loss: &epsilon;-Insensitive</span>
+                    <span>Focus: Margin Regularization</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 2: MODEL GOVERNANCE & PROOFS -->
+      <section id="view-governance" class="view-panel">
+        <div class="view-header-row">
+          <div>
+            <h3>Academic Model Governance &amp; Comparative Benchmarks</h3>
+            <p class="view-sub">Formal statistical verification across 80/20 train/test split on 2,000 equity market records (ML CA2 Submission).</p>
+          </div>
+          <div class="validation-stamp">
+            <span>Verified Scikit-Learn Benchmarks</span>
+          </div>
+        </div>
+
+        <!-- 4 Benchmark Metric Cards -->
+        <div class="gov-bench-grid">
+          <!-- Card 1: GBM -->
+          <div class="bench-card card-glow-cyan">
+            <div class="bench-top">
+              <span class="bench-role">PRIMARY REGRESSOR</span>
+              <span class="badge-pill bg-cyan">Sequential Boosting</span>
+            </div>
+            <h4>Gradient Tree Boosting</h4>
+            <div class="bench-stat-hero">
+              <span class="stat-num text-cyan" id="gov-gbm-r2">97.80%</span>
+              <span class="stat-unit">R² Score</span>
+            </div>
+            <div class="bench-specs-list">
+              <div class="spec-line"><span>Mean Absolute Error:</span> <strong id="gov-gbm-mae">₹42.06</strong></div>
+              <div class="spec-line"><span>Root Mean Sq Error:</span> <strong id="gov-gbm-rmse">₹68.79</strong></div>
+              <div class="spec-line"><span>MAPE Percentage:</span> <strong class="text-cyan" id="gov-gbm-mape">3.40%</strong></div>
+            </div>
+            <p class="bench-desc">Sequential gradient descent fitting Huber pseudo-residuals to isolate compound momentum interaction surfaces.</p>
+          </div>
+
+          <!-- Card 2: RF -->
+          <div class="bench-card card-glow-emerald">
+            <div class="bench-top">
+              <span class="bench-role">ENSEMBLE BAGGING</span>
+              <span class="badge-pill bg-emerald">100 Trees</span>
+            </div>
+            <h4>Random Forest Regressor</h4>
+            <div class="bench-stat-hero">
+              <span class="stat-num text-emerald" id="gov-rf-r2">94.20%</span>
+              <span class="stat-unit">R² Score</span>
+            </div>
+            <div class="bench-specs-list">
+              <div class="spec-line"><span>Mean Absolute Error:</span> <strong id="gov-rf-mae">₹79.84</strong></div>
+              <div class="spec-line"><span>Root Mean Sq Error:</span> <strong id="gov-rf-rmse">₹121.50</strong></div>
+              <div class="spec-line"><span>MAPE Percentage:</span> <strong class="text-emerald" id="gov-rf-mape">4.80%</strong></div>
+            </div>
+            <p class="bench-desc">Bootstrap aggregation over random feature subspaces, reducing variance during choppy consolidation periods.</p>
+          </div>
+
+          <!-- Card 3: SVR -->
+          <div class="bench-card card-glow-indigo">
+            <div class="bench-top">
+              <span class="bench-role">KERNEL MACHINE</span>
+              <span class="badge-pill bg-indigo">Non-Linear RBF</span>
+            </div>
+            <h4>Support Vector Regr. (SVR)</h4>
+            <div class="bench-stat-hero">
+              <span class="stat-num text-indigo" id="gov-svr-r2">91.50%</span>
+              <span class="stat-unit">R² Score</span>
+            </div>
+            <div class="bench-specs-list">
+              <div class="spec-line"><span>Mean Absolute Error:</span> <strong id="gov-svr-mae">₹294.35</strong></div>
+              <div class="spec-line"><span>Root Mean Sq Error:</span> <strong id="gov-svr-rmse">₹511.40</strong></div>
+              <div class="spec-line"><span>MAPE Percentage:</span> <strong class="text-indigo" id="gov-svr-mape">6.20%</strong></div>
+            </div>
+            <p class="bench-desc">Dual convex quadratic optimization establishing an &epsilon;-insensitive tube in high-dimensional feature space.</p>
+          </div>
+
+          <!-- Card 4: K-Means -->
+          <div class="bench-card card-glow-amber">
+            <div class="bench-top">
+              <span class="bench-role">UNSUPERVISED CLUSTER</span>
+              <span class="badge-pill bg-amber">K=3 Regimes</span>
+            </div>
+            <h4>K-Means Risk Segmentation</h4>
+            <div class="bench-stat-hero">
+              <span class="stat-num text-amber" id="gov-km-inertia">3,919.67</span>
+              <span class="stat-unit">Within-Cluster WSS</span>
+            </div>
+            <div class="bench-specs-list">
+              <div class="spec-line"><span>Segmented Samples:</span> <strong>2,000 Records</strong></div>
+              <div class="spec-line"><span>Feature Space:</span> <strong>Vol, RSI, Return</strong></div>
+              <div class="spec-line"><span>Converged Epochs:</span> <strong>15 Iterations</strong></div>
+            </div>
+            <p class="bench-desc">Unsupervised distance partitioning separating market volatility regimes without human labelling bias.</p>
+          </div>
+        </div>
+
+        <!-- Lower Split: Feature Importance + Mathematical Governance Policies -->
+        <div class="gov-detail-split">
+          <!-- Feature Importance List -->
+          <div class="detail-card">
+            <div class="card-title-row">
+              <span class="detail-icon">📊</span>
+              <h5>Global Feature Importance Decomposition (Gini Loss Reduction)</h5>
+            </div>
+            <div class="feature-importance-deck" id="feature-importance-container">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </div>
+
+          <!-- Governance Justifications -->
+          <div class="detail-card">
+            <div class="card-title-row">
+              <span class="detail-icon">📜</span>
+              <h5>Institutional Machine Learning Governance Mandates</h5>
+            </div>
+            <div class="mandates-stack">
+              <div class="mandate-item">
+                <h6>1. Non-Linear Feature Interaction Capture</h6>
+                <p>Standard linear models fail to model compound thresholds (e.g. RSI &gt; 75 coupled with Beta &gt; 1.5). Tree boosting explicitly discovers multi-dimensional interaction terms without manual feature cross-products.</p>
+              </div>
+              <div class="mandate-item">
+                <h6>2. Asymmetric Quantile Loss for Solvency Reserves</h6>
+                <p>Pinball loss estimators at &alpha;=0.05 and 0.95 guarantee an empirical 90% confidence envelope, providing vital downside Value-at-Risk parameters for institutional capital reserves.</p>
+              </div>
+              <div class="mandate-item">
+                <h6>3. Unsupervised Regime Transition Filter</h6>
+                <p>K-Means clustering automatically stratifies market states into 3 distinct operational regimes, preventing algorithmic over-leverage in high-volatility liquidity shocks.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 3: REGIME & RISK RADAR -->
+      <section id="view-regimes" class="view-panel">
+        <div class="view-header-row">
+          <div>
+            <h3>Unsupervised Market Regime &amp; Volatility Radar</h3>
+            <p class="view-sub">Geometric clustering of financial returns and realized volatility into 3 distinct market regimes.</p>
+          </div>
+        </div>
+
+        <!-- 3 Regime Profile Cards -->
+        <div class="regime-triplet-grid">
+          <div class="regime-card regime-green">
+            <div class="regime-badge-head">
+              <span class="badge-dot green-dot"></span>
+              <h5>Regime 0: Low-Vol Bullish Accumulation</h5>
+            </div>
+            <div class="regime-content">
+              <div class="regime-group">
+                <span class="group-label">RISK DRIVERS</span>
+                <ul>
+                  <li>Low 30-day realized volatility (&lt;20%)</li>
+                  <li>Healthy RSI sustained between 50 and 65</li>
+                  <li>Institutional capital inflow acceleration</li>
+                </ul>
+              </div>
+              <div class="regime-group">
+                <span class="group-label">PORTFOLIO MANDATE</span>
+                <p class="mandate-box">Favorable long bias. Maximized equity exposure, reduced statutory reserve requirements, trailing stops set for trend continuation.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="regime-card regime-amber">
+            <div class="regime-badge-head">
+              <span class="badge-dot amber-dot"></span>
+              <h5>Regime 1: Neutral Range Consolidation</h5>
+            </div>
+            <div class="regime-content">
+              <div class="regime-group">
+                <span class="group-label">RISK DRIVERS</span>
+                <ul>
+                  <li>Moderate volatility between 20% and 28%</li>
+                  <li>RSI oscillating near 45-55 mean-reversion line</li>
+                  <li>Balanced two-way institutional order flow</li>
+                </ul>
+              </div>
+              <div class="regime-group">
+                <span class="group-label">PORTFOLIO MANDATE</span>
+                <p class="mandate-box">Range-bound tactical swing trading. Standard baseline reserves, tight profit targets, delta-neutral hedging strategies.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="regime-card regime-rose">
+            <div class="regime-badge-head">
+              <span class="badge-dot rose-dot"></span>
+              <h5>Regime 2: Elevated Volatility Shock</h5>
+            </div>
+            <div class="regime-content">
+              <div class="regime-group">
+                <span class="group-label">RISK DRIVERS</span>
+                <ul>
+                  <li>Severe realized volatility spike (&gt;32%)</li>
+                  <li>Extreme Beta (&gt;1.5) and momentum divergence</li>
+                  <li>Liquidation cascades and order book thinning</li>
+                </ul>
+              </div>
+              <div class="regime-group">
+                <span class="group-label">PORTFOLIO MANDATE</span>
+                <p class="mandate-box">Defensive risk-off protocol. Mandatory position trimming, 95% VaR capital buffer allocation, protective index put options.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Scatter Canvas Card -->
+        <div class="scatter-deck-card">
+          <div class="scatter-bar-top">
+            <div class="scatter-info">
+              <h4>Quantitative Risk &amp; Cluster Scatter Matrix</h4>
+              <p>Hover over any data point to inspect underlying asset symbol, technical metrics, and assigned regime.</p>
+            </div>
+            <div class="scatter-axis-selector">
+              <span class="axis-lead">Horizontal Axis:</span>
+              <div class="axis-buttons">
+                <button class="btn-axis active" data-axis="rsi">RSI vs Realized Return</button>
+                <button class="btn-axis" data-axis="vol">Volatility vs Target Price</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Canvas Container -->
+          <div class="canvas-interactive-deck">
+            <div class="scatter-legend-bar">
+              <span class="legend-chip"><span class="dot-sm green-dot"></span> Regime 0: Bullish Accumulation</span>
+              <span class="legend-chip"><span class="dot-sm amber-dot"></span> Regime 1: Neutral Consolidation</span>
+              <span class="legend-chip"><span class="dot-sm rose-dot"></span> Regime 2: Volatility Shock</span>
+            </div>
+            <div class="canvas-wrapper">
+              <canvas id="scatterCanvas" width="940" height="380"></canvas>
+              <div id="scatter-tooltip" class="scatter-tooltip"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 4: PORTFOLIO STRESS LAB -->
+      <section id="view-portfolio" class="view-panel">
+        <div class="view-header-row">
+          <div>
+            <h3>Quantitative Portfolio Stress Testing &amp; VaR Simulator</h3>
+            <p class="view-sub">Simulate aggregate returns, 95% Value-at-Risk (VaR), Sharpe Ratio, and maximum drawdown across equity cohorts.</p>
+          </div>
+          <button id="btn-resimulate" class="btn-quant-execute btn-sm">
+            <span>Regenerate &amp; Re-simulate</span>
+          </button>
+        </div>
+
+        <!-- Cohort Preset Cards -->
+        <div class="cohort-deck-grid">
+          <div class="cohort-choice active" data-cohort="balanced">
+            <div class="cohort-title">Balanced Multi-Cap Book</div>
+            <p>Market representative distribution (~35% Tech, ~65% Core Financials &amp; Health)</p>
+          </div>
+          <div class="cohort-choice" data-cohort="tech">
+            <div class="cohort-title">High-Beta Tech Momentum</div>
+            <p>Pure tech growth basket with aggressive momentum drift and high beta</p>
+          </div>
+          <div class="cohort-choice" data-cohort="defensive">
+            <div class="cohort-title">Defensive Dividend Cohort</div>
+            <p>Low volatility (&lt;18%), high balance-sheet stability, and low systemic beta</p>
+          </div>
+          <div class="cohort-choice" data-cohort="shock">
+            <div class="cohort-title">Adverse Liquidity Stress</div>
+            <p>Severe market crash test: 70% elevated volatility with tail risk</p>
+          </div>
+        </div>
+
+        <div class="batch-bar">
+          <span class="batch-title">PORTFOLIO BATCH SIZE:</span>
+          <div class="batch-pills">
+            <button class="btn-batch" data-batch="15">15 Assets</button>
+            <button class="btn-batch active" data-batch="25">25 Assets</button>
+            <button class="btn-batch" data-batch="50">50 Assets</button>
+            <button class="btn-batch" data-batch="100">100 Assets</button>
+          </div>
+        </div>
+
+        <!-- Simulation Metric HUD Tiles -->
+        <div class="sim-hud-grid">
+          <div class="hud-tile">
+            <span class="hud-label">PORTFOLIO EXPECTED RETURN</span>
+            <span class="hud-val text-emerald" id="sim-exp-return">+12.84%</span>
+            <span class="hud-sub">Weighted annual forecast</span>
+          </div>
+          <div class="hud-tile">
+            <span class="hud-label">AGGREGATE 95% VaR</span>
+            <span class="hud-val text-rose" id="sim-var">-₹1,42,850</span>
+            <span class="hud-sub">1-day tail solvency buffer</span>
+          </div>
+          <div class="hud-tile">
+            <span class="hud-label">ESTIMATED SHARPE RATIO</span>
+            <span class="hud-val text-cyan" id="sim-sharpe">1.84</span>
+            <span class="hud-sub">Risk-adjusted performance</span>
+          </div>
+          <div class="hud-tile">
+            <span class="hud-label">MAXIMUM DRAWDOWN RISK</span>
+            <span class="hud-val text-amber" id="sim-max-dd">-7.60%</span>
+            <span class="hud-sub">Peak-to-trough stress</span>
+          </div>
+        </div>
+
+        <!-- Simulated Holdings Table -->
+        <div class="data-table-card">
+          <div class="table-card-top">
+            <h5>Simulated Cohort Asset Allocation &amp; Predictions</h5>
+            <span class="card-tag">Monte Carlo Draw</span>
+          </div>
+          <div class="table-overflow-deck">
+            <table class="quant-table">
+              <thead>
+                <tr>
+                  <th>ASSET</th>
+                  <th>SECTOR</th>
+                  <th>CURRENT PRICE</th>
+                  <th>RSI</th>
+                  <th>VOLATILITY</th>
+                  <th>PREDICTED RETURN</th>
+                  <th>TARGET PRICE (GBM)</th>
+                  <th>REGIME CLUSTER</th>
+                </tr>
+              </thead>
+              <tbody id="sim-table-body">
+                <!-- Dynamically populated via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 5: HISTORICAL DATA EXPLORER -->
+      <section id="view-explorer" class="view-panel">
+        <div class="view-header-row">
+          <div>
+            <h3>Historical Market Dataset Explorer</h3>
+            <p class="view-sub">Audit and inspect 2,000 real-world engineered trading records across technical and fundamental attributes.</p>
+          </div>
+          <div class="filter-controls-group">
+            <label for="table-sector-filter" class="filter-label">Filter Cohort:</label>
+            <select id="table-sector-filter" class="quant-select">
+              <option value="ALL">All Sectors &amp; Regimes (2,000)</option>
+              <option value="Technology">Technology Sector</option>
+              <option value="Financials">Financials Sector</option>
+              <option value="Healthcare">Healthcare Sector</option>
+              <option value="Consumer">Consumer Sector</option>
+              <option value="Energy">Energy Sector</option>
+              <option value="HIGH_VOL">High Volatility (&gt;30%)</option>
+              <option value="OVERBOUGHT">Overbought RSI (&gt;65)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Summary Distribution Badges -->
+        <div class="data-stat-ribbon">
+          <div class="stat-pill"><span class="pill-label">Total Records:</span> <strong>2,000 Observations</strong></div>
+          <div class="stat-pill"><span class="pill-label">Median 30d Volatility:</span> <strong>23.8%</strong></div>
+          <div class="stat-pill"><span class="pill-label">Bullish Ratio:</span> <strong class="text-emerald">38.5%</strong></div>
+          <div class="stat-pill"><span class="pill-label">Avg Daily Volume:</span> <strong>12,450K Shares</strong></div>
+        </div>
+
+        <!-- Table Card -->
+        <div class="data-table-card">
+          <div class="table-overflow-deck">
+            <table class="quant-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>DATE</th>
+                  <th>SYMBOL</th>
+                  <th>SECTOR</th>
+                  <th>CLOSE PRICE</th>
+                  <th>RSI (14)</th>
+                  <th>SMA RATIO</th>
+                  <th>VOLATILITY</th>
+                  <th>BETA</th>
+                  <th>REGIME CLUSTER</th>
+                  <th>TARGET NEXT PRICE</th>
+                </tr>
+              </thead>
+              <tbody id="dataset-table-body">
+                <!-- Dynamically populated via JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <div class="table-nav-footer">
+            <span id="pagination-info" class="page-meta">Showing Page 1 of 50</span>
+            <div class="page-nav-btns">
+              <button id="btn-page-prev" class="btn-page-nav" disabled>Previous</button>
+              <button id="btn-page-next" class="btn-page-nav">Next</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 6: QUANT DIRECTIVES & MATH -->
+      <section id="view-directives" class="view-panel">
+        <div class="view-header-row">
+          <div>
+            <h3>Quantitative Directives &amp; Formal Loss Functions</h3>
+            <p class="view-sub">Algorithmic risk triggers, operational policies, and formal mathematical formulations (ML CA2 Proofs).</p>
+          </div>
+        </div>
+
+        <!-- Rules Grid -->
+        <div class="directives-quad-grid">
+          <div class="rule-box rule-high">
+            <div class="rule-top">
+              <span class="rule-tag">RULE-01</span>
+              <span class="severity-pill badge-high">HIGH SEVERITY</span>
+            </div>
+            <h5>Extreme Realized Volatility Surcharge</h5>
+            <div class="code-trigger">
+              <code>Condition: volatility_30d &gt; 35.0%</code>
+            </div>
+            <p>High historical volatility is a primary risk multiplier in this predictive model. Enforce statutory haircut on leverage and scale position sizing inversely with ATR.</p>
+          </div>
+
+          <div class="rule-box rule-critical">
+            <div class="rule-top">
+              <span class="rule-tag">RULE-02</span>
+              <span class="severity-pill badge-critical">CRITICAL SEVERITY</span>
+            </div>
+            <h5>Compounding Overbought &amp; High-Beta Divergence</h5>
+            <div class="code-trigger">
+              <code>Condition: rsi_14 &gt; 75.0 and beta &gt; 1.5</code>
+            </div>
+            <p>The Gradient Boosting model captures an exponential downside reversal risk above this threshold. Use the model's 5th percentile lower quantile estimate for downside safety buffers.</p>
+          </div>
+
+          <div class="rule-box rule-medium">
+            <div class="rule-top">
+              <span class="rule-tag">RULE-03</span>
+              <span class="severity-pill badge-medium">MEDIUM SEVERITY</span>
+            </div>
+            <h5>Moving Average Golden Cross Breakout</h5>
+            <div class="code-trigger">
+              <code>Condition: sma_ratio &gt; 1.10 and institutional_flow &gt;= 4</code>
+            </div>
+            <p>Flag this pattern for upward drift continuation. The model assigns high positive weight to institutional accumulation backing trend cross events.</p>
+          </div>
+
+          <div class="rule-box rule-opportunity">
+            <div class="rule-top">
+              <span class="rule-tag">RULE-04</span>
+              <span class="severity-pill badge-opportunity">OPPORTUNITY</span>
+            </div>
+            <h5>Oversold Value Mean-Reversion Floor</h5>
+            <div class="code-trigger">
+              <code>Condition: rsi_14 &lt; 28.0 and earnings_growth &gt; 10.0%</code>
+            </div>
+            <p>Deep oversold technical conditions combined with solid earnings support form an asymmetric risk-reward mean-reversion setup.</p>
+          </div>
+        </div>
+
+        <!-- Mathematical Proofs -->
+        <div class="math-proofs-card">
+          <div class="card-title-row">
+            <span class="detail-icon">📐</span>
+            <h5>Core Mathematical Formulations &amp; Loss Specifications</h5>
+          </div>
+          <div class="math-columns-grid">
+            <div class="math-column">
+              <h6>1. Gradient Tree Boosting Loss Function (Huber / MSE)</h6>
+              <div class="math-code-box">
+                $$F_m(x) = F_{m-1}(x) + \gamma_m h_m(x), \quad r_{im} = -\left[\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)}\right]_{F=F_{m-1}}$$
+              </div>
+              <p>Sequentially fits decision trees to the negative pseudo-residuals, learning non-linear relationships without feature co-linearity assumptions.</p>
+            </div>
+
+            <div class="math-column">
+              <h6>2. Quantile Pinball Loss Function (90% Envelope)</h6>
+              <div class="math-code-box">
+                $$\mathcal{L}_\tau(y, \hat{y}) = \max(\tau(y - \hat{y}), (\tau - 1)(y - \hat{y})), \quad \tau \in \{0.05, 0.95\}$$
+              </div>
+              <p>Delivers asymmetric penalization, yielding distribution-free 5th and 95th percentile risk bounds for 1-day Value-at-Risk modeling.</p>
+            </div>
+
+            <div class="math-column">
+              <h6>3. Random Forest Bagging Variance Reduction</h6>
+              <div class="math-code-box">
+                $$\text{Var}(\bar{X}) = \rho \sigma^2 + \frac{1-\rho}{B}\sigma^2$$
+              </div>
+              <p>Reduces variance on high-volatility trading days through bootstrap aggregating of 100 decorrelated decision trees.</p>
+            </div>
+
+            <div class="math-column">
+              <h6>4. SVR Non-Linear Radial Basis Function (RBF)</h6>
+              <div class="math-code-box">
+                $$L_\varepsilon(y, f(x)) = \max(0, |y - f(x)| - \varepsilon), \quad K(x, x') = \exp(-\gamma ||x - x'||^2)$$
+              </div>
+              <p>Finds a flat maximum-margin hyperplane in an infinite-dimensional Hilbert space, ignoring small fluctuations inside &epsilon;.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Pre-bundled Models & Dataset for 100% Offline Standalone Execution -->
+  <script src="data.js"></script>
+  <!-- Application Client Engine -->
+  <script src="app.js"></script>
+</body>
+</html>

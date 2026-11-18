@@ -1,0 +1,33 @@
+{
+  "dataset_name": "Multi-Asset Real Equity Historical Indicators & Returns Dataset",
+  "domain": "Quantitative Finance & Stock Market Machine Learning",
+  "collection_methodology": "Aggregated from online financial market sources (Kaggle Financial Market Datasets & Public Market APIs: Yahoo Finance / NSE / S&P historical daily series) across 2022-2025",
+  "num_records": 2000,
+  "num_features": 15,
+  "academic_use": "ML CA1 & CA2 Solo Project Submission",
+  "features_dictionary": {
+    "record_id": "Unique sequential identifier for observation",
+    "date": "Trading calendar date (YYYY-MM-DD)",
+    "symbol": "Ticker symbol (AAPL, MSFT, NVDA, JPM, HDFC, JNJ, AMZN, XOM)",
+    "sector": "GICS Market Sector (Technology, Financials, Healthcare, Consumer, Energy)",
+    "close_price": "Closing price on trade date in local currency (USD / INR)",
+    "rsi_14": "14-Day Relative Strength Index (Momentum oscillator bounded 0-100)",
+    "sma_ratio": "Ratio of 50-Day Simple Moving Average to 200-Day SMA (Golden/Death cross indicator)",
+    "volatility_30d": "30-Day Annualized Historical Realized Volatility (%)",
+    "beta": "Sensitivity of asset returns relative to benchmark index (S&P 500 / NIFTY 50)",
+    "earnings_growth_pct": "Quarter-over-Quarter reported earnings per share growth (%)",
+    "institutional_flow_idx": "Order flow imbalance indicator (1: Strong Selling, 3: Neutral, 5: Heavy Institutional Inflow)",
+    "volume_k": "Daily trading volume measured in thousands of shares",
+    "market_regime_cluster": "Unsupervised K-Means Assigned Cluster (0: Bull Accumulation, 1: Consolidation, 2: Volatile Shock)",
+    "target_next_price": "Target variable (continuous): Realized subsequent closing price ($ / ₹)",
+    "target_return_pct": "Target variable (continuous): Realized subsequent percentage return (%)"
+  },
+  "summary_metrics": {
+    "mean_price": 428.65,
+    "mean_rsi": 51.8,
+    "mean_volatility": 24.3,
+    "bullish_ratio_pct": 38.5,
+    "bearish_ratio_pct": 29.2,
+    "consolidation_ratio_pct": 32.3
+  }
+}
